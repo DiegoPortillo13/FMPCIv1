@@ -4,8 +4,8 @@ import db from "../database/db.js";
 const QuoteModel = db.define('cotizaciones', {
     
 numProyecto:{type:DataTypes.STRING},  
-numCotizacion:{type:DataTypes.STRING},
-fEntCotizar:{type:DataTypes.DATE}, 
+numCotizaciones:{type:DataTypes.STRING},
+fEntCot:{type:DataTypes.DATE}, 
 fCotizada:{type:DataTypes.DATE}, 
 Encargado:{type:DataTypes.STRING},
 

@@ -1,12 +1,12 @@
 import axios from 'axios';
-import { useState, useEffect, Suspense } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 
 
 const URI = 'http://localhost:8000/projects/'
 
 const Edit = () => {
-    const vaIni={
+    const vaIni = {
         numProyecto: '',
         nomProyecto: '',
         prioridad: '',
@@ -21,44 +21,19 @@ const Edit = () => {
     }
     const [proyecto, setProyecto] = useState(vaIni)
     const capturarDatos = (e) => {
-        const { name, value } = e.target
+
         setProyecto({
             ...proyecto,
-            [name]: value
+            [e.target.name]: e.target.value
         })
     }
 
     const navigate = useNavigate()
-    let { id } = useParams()
-    const [subId, setSubId] = useState(id)
-
-    const getProById = async () => {
-        const res = await axios.get(`http://localhost:8000/projects/${subId}`)
-        setProyecto({
-            numProyecto: res.data.numProyecto,
-            nomProyecto: res.data.nomProyecto,
-            prioridad: res.data.prioridad,
-            fecha: res.data.fecha,
-            cliente: res.data.cliente,
-            descripcion: res.data.descripcion,
-            estatus: res.data.estatus,
-            cantidad: res.data.cantidad,
-            fRequerida: res.data.fRequerida,
-            fFinalizacion: res.data.fFinalizacion,
-            fEntrega: res.data.fEntrega
-        })
-
-    }
-
-
-    useEffect(() =>{
-        if(subId !== ''){
-            getProById(subId)
-        }
-    }, [subId])
+    const { id } = useParams()
 
     const update = async (e) => {
         e.preventDefault()
+        console.log(URI + id);
         await axios.put(URI + id, {
             numProyecto: proyecto.numProyecto,
             nomProyecto: proyecto.nomProyecto,
@@ -72,9 +47,27 @@ const Edit = () => {
             fFinalizacion: proyecto.fFinalizacion,
             fEntrega: proyecto.fEntrega
         })
-       setProyecto({...vaIni})
-       setSubId("")
-       navigate('/')
+        
+        navigate('/')
+        console.log(proyecto);
+
+
+
+    }
+
+
+
+    useEffect(() => {
+
+        getProById()
+
+    }, [])
+
+    const getProById = async () => {
+        const res = await axios.get(URI + id)
+        console.log(URI + id);
+        setProyecto(res.data)
+        console.log(proyecto);
 
     }
 
@@ -88,13 +81,24 @@ const Edit = () => {
                         <form onSubmit={update}>
                             <h2>Datos del Proyecto</h2>
                             <label className="form-label">Numero Identificador del Proyecto</label>
-                            <input name='numProyecto' value={proyecto.numProyecto} onChange={capturarDatos} type='text' className="frml" />
+                            <input name='numProyecto'
+                                value={proyecto.numProyecto}
+                                onChange={capturarDatos}
+                                type='text'
+                                className="frml" />
 
                             <label className="form-label">Nombre del Proyecto</label>
-                            <input name='nomProyecto' value={proyecto.nomProyecto} onChange={capturarDatos} type='text' className="frml" />
+                            <input name='nomProyecto'
+                                value={proyecto.nomProyecto}
+                                onChange={capturarDatos}
+                                type='text'
+                                className="frml" />
 
                             <label className="form-label">Prioridad</label>
-                            <select name='prioridad' value={proyecto.prioridad} onChange={capturarDatos} className="frml">
+                            <select name='prioridad'
+                                value={proyecto.prioridad}
+                                onChange={capturarDatos}
+                                className="frml">
                                 <option>Seleccione Una Opcion</option>
                                 <option>Normal</option>
                                 <option>Alta</option>
@@ -104,16 +108,30 @@ const Edit = () => {
 
 
                             <label className="form-label">Fecha de registro</label>
-                            <input name='fecha' value={proyecto.fecha} onChange={capturarDatos} type='date' className="frml" />
+                            <input name='fecha'
+                                value={proyecto.fecha}
+                                onChange={capturarDatos}
+                                type='date' className="frml" />
 
                             <label className="form-label">Cliente</label>
-                            <input name='cliente' value={proyecto.cliente} onChange={capturarDatos} type='text' className="frml" />
+                            <input name='cliente'
+                                value={proyecto.cliente}
+                                onChange={capturarDatos}
+                                type='text'
+                                className="frml" />
 
                             <label className="form-label">Descripcion</label>
-                            <textarea name='descripcion' value={proyecto.descripcion} onChange={capturarDatos} type='text' className="frml" />
+                            <textarea name='descripcion'
+                                value={proyecto.descripcion}
+                                onChange={capturarDatos}
+                                type='text'
+                                className="frml" />
 
                             <label className="form-label">Estado</label>
-                            <select name='estatus' value={proyecto.estatus} onChange={capturarDatos} className="frml">
+                            <select name='estatus'
+                                value={proyecto.estatus}
+                                onChange={capturarDatos}
+                                className="frml">
                                 <option>Seleccione Una Opcion</option>
                                 <option>Diseño</option>
                                 <option>Diseño-Revision</option>
@@ -125,16 +143,32 @@ const Edit = () => {
                             </select>
 
                             <label className="form-label">Cantidad</label>
-                            <textarea name='cantidad' value={proyecto.cantidad} onChange={capturarDatos} type='text' className="frml" />
+                            <textarea name='cantidad'
+                                value={proyecto.cantidad}
+                                onChange={capturarDatos}
+                                type='text'
+                                className="frml" />
 
                             <label className="form-label">Fecha Requerida</label>
-                            <input name='fRequerida' value={proyecto.fRequerida} onChange={capturarDatos} type='date' className="frml" />
+                            <input name='fRequerida'
+                                value={proyecto.fRequerida}
+                                onChange={capturarDatos}
+                                type='date'
+                                className="frml" />
 
                             <label className="form-label">Fecha Finalizacion</label>
-                            <input name='fFinalizacion' value={proyecto.fFinalizacion} onChange={capturarDatos} type='date' className="frml" />
+                            <input name='fFinalizacion'
+                                value={proyecto.fFinalizacion}
+                                onChange={capturarDatos}
+                                type='date'
+                                className="frml" />
 
                             <label className="form-label">Fecha Requerida</label>
-                            <input name='fEntrega' value={proyecto.fEntrega} onChange={capturarDatos} type='date' className="frml" />
+                            <input name='fEntrega'
+                                value={proyecto.fEntrega}
+                                onChange={capturarDatos}
+                                type='date'
+                                className="frml" />
 
                             <br />
                             <br />

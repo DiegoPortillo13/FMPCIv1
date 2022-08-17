@@ -9,9 +9,9 @@ import {
 const qrouter = Express.Router()
 
 qrouter.get('/', getAllC)
-qrouter.get('/:numCotizacion', getOneC)
+qrouter.get('/:numCotizaciones', getOneC)
 qrouter.post('/', addOneC)
-qrouter.put('/:numCotizacion', updateOneC)
-qrouter.delete('/:numCotizacion', deleteOneC)
+qrouter.put('/:numCotizaciones', updateOneC)
+qrouter.delete('/:numCotizaciones', deleteOneC)
 
 export default qrouter

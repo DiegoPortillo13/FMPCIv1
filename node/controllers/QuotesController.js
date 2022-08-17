@@ -13,7 +13,7 @@ export const getOneC = async (req, res) => {
     try {
         const project = await QuoteModel.findAll({
             where: {
-                numCotizacion: req.params.numCotizacion
+                numCotizaciones: req.params.numCotizaciones
             }
         })
         res.json(project)
@@ -36,7 +36,7 @@ export const addOneC = async (req, res) => {
 export const updateOneC = async (req, res) => {
     try {
         await QuoteModel.update(req.body, {
-            where: { numCotizacion: req.params.numCotizacion }
+            where: { numCotizaciones: req.params.numCotizacion }
         })
         res.json({
             "message": "Cotizacion actulizado correctamente"
@@ -49,7 +49,7 @@ export const updateOneC = async (req, res) => {
 export const deleteOneC = async (req,res)=>{
     try {
         await QuoteModel.destroy({
-            where: { numCotizacion: req.params.numCotizacion }
+            where: { numCotizaciones: req.params.numCotizacion }
         })
         res.json({
             "message": "Cotizacion eleminado"

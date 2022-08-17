@@ -43,17 +43,17 @@ const CompGetAllC = () => {
                         </thead>
                         <tbody>
                             {quotes.map((quote) => (
-                                <tr key={quote.numCotizacion}>
+                                <tr key={quote.numCotizaciones}>
                                     <td>{quote.numProyecto}</td>
                                     <td>{quote.numCotizacion}</td>
-                                    <td>{quote.fEntCotizar }</td>
+                                    <td>{quote.fEntCot }</td>
                                     <td>{quote.fCotizada }</td>
                                     <td>{quote.encargado }</td>
                                     <td>{
-                                        <Link to={`/editar/${quote.numCotizacion}`} className='btn-o  mx-2'><BsIcon.BsFillPencilFill /></Link>
+                                        <Link to={`/editar/${quote.numCotizaciones}`} className='btn-o  mx-2'><BsIcon.BsFillPencilFill /></Link>
                                         
                                         }
-                                        <button onClick={()=>delQuotes(quote.numCotizacion)} className='btn-o mx-2'><BsIcon.BsFillTrashFill /></button>
+                                        <button onClick={()=>delQuotes(quote.numCotizaciones)} className='btn-o mx-2'><BsIcon.BsFillTrashFill /></button>
                                     </td>
                                 </tr>
                             ))

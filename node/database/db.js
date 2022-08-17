@@ -1,6 +1,6 @@
 import {Sequelize} from "sequelize";
 
-const db = new Sequelize('proyectos','root','',{
+const db = new Sequelize('fmpci','root','',{
     host:'localhost',
     dialect:'mysql',
     define: {
