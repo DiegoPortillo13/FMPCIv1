@@ -1,7 +1,6 @@
 
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
-import './App.css';
 import SideNavJs from './SideNavBar/SideNavJs';
 
 import CompGetAll from './projects/GetAll';
@@ -26,7 +25,7 @@ function App() {
           <Route path='/proyectos' element={<CompGetAll />} />
           <Route path='/add' element={<Add />} />
           <Route path='/cotizaciones' element={<CompGetAllC />}/>
-          <Route path='/edit/:numProyecto' element={<Edit />} />
+          <Route path='/edit/:id' element={<Edit />} />
         </Routes>
       </BrowserRouter>
 

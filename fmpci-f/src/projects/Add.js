@@ -2,6 +2,7 @@ import axios from "axios"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 
+
 const URI = 'http://localhost:8000/projects/'
 const URIC = 'http://localhost:8000/quotes/'
 
@@ -19,8 +20,10 @@ const Add = () => {
     const [fRequerida, setFrequerida] = useState('')
     const [fFinalizacion, setFfinalizacion] = useState('')
     const [fEntrega, setFentrega] = useState('')
-    const [numCotizacion, setNumCotizacion] = useState('')
-    const [fEntCotizar, setFentCotizar] = useState('')
+
+
+    const [numCotizaciones, setNumCotizaciones] = useState('')
+    const [fEntCot, setFentCot] = useState('')
     const [fCotizada, setFcotizada] = useState('')
     const [encargado, setEncargado] = useState('')
     const navigate = useNavigate()
@@ -42,14 +45,17 @@ const Add = () => {
             
         })
         await axios.post(URIC, {
-            numProyecto: numProyecto,
-            numCotizacion: numCotizacion,
-            fEntCotizar: fEntCotizar,
+            
+            numCotizaciones: numCotizaciones,
+            fEntCot: fEntCot,
             fCotizada: fCotizada,
-            encargado: encargado
+            encargado: encargado,
+            numProyecto: numProyecto,
         })
         navigate('/')
     }
+    
+
     return (
         <div className="container">
             <div className="row">
@@ -112,10 +118,10 @@ const Add = () => {
 
                         <h2>Datos de Cotizacion</h2>
                         <label className="form-label">Numero Identificador de la Cotizacion</label>
-                        <input value={numCotizacion} onChange={(e) => setNumCotizacion(e.target.value)} type='text' className="frml" />
+                        <input value={numCotizaciones} onChange={(e) => setNumCotizaciones(e.target.value)} type='text' className="frml" />
 
                         <label className="form-label">Fecha de Entrega para Cotizar</label>
-                        <input value={fEntCotizar} onChange={(e) => setFentCotizar(e.target.value)} type='date' className="frml" />
+                        <input value={fEntCot} onChange={(e) => setFentCot(e.target.value)} type='date' className="frml" />
 
                         <label className="form-label">Fecha de Cotizacion Finalizada</label>
                         <input value={fCotizada} onChange={(e) => setFcotizada(e.target.value)} type='date' className="frml" />
@@ -127,6 +133,9 @@ const Add = () => {
                             <option>Mauro Saenz</option>
                             <option>Claudia Gaytan</option>
                         </select>
+
+                        <label className="form-label">Documentos</label>
+                        <input className="frml" type="file" />
                         <br />
                         <br />
                         <button type="submit" className="btn-o mt-2 mb-2">Agregar</button>
