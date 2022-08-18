@@ -30,7 +30,6 @@ const Edit = () => {
 
     const navigate = useNavigate()
     const { id } = useParams()
-
     const update = async (e) => {
         e.preventDefault()
         console.log(URI + id);
@@ -47,28 +46,17 @@ const Edit = () => {
             fFinalizacion: proyecto.fFinalizacion,
             fEntrega: proyecto.fEntrega
         })
-        
         navigate('/')
         console.log(proyecto);
-
-
-
     }
-
-
-
     useEffect(() => {
 
         getProById()
-
     }, [])
-
     const getProById = async () => {
         const res = await axios.get(URI + id)
-        console.log(URI + id);
         setProyecto(res.data)
         console.log(proyecto);
-
     }
 
 
