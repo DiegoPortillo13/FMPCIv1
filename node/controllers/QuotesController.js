@@ -2,8 +2,8 @@ import QuoteModel from "../models/QuoteModel.js"
 
 export const getAllC = async (req, res) => {
     try {
-        const projects = await QuoteModel.findAll()
-        res.json(projects)
+        const quote = await QuoteModel.findAll()
+        res.json(quote)
     } catch (error) {
         res.json({ message: error.message })
     }
@@ -11,12 +11,12 @@ export const getAllC = async (req, res) => {
 
 export const getOneC = async (req, res) => {
     try {
-        const project = await QuoteModel.findAll({
+        const quote = await QuoteModel.findAll({
             where: {
                 numCotizaciones: req.params.numCotizaciones
             }
         })
-        res.json(project)
+        res.json(quote)
     } catch (error) {
         res.json({ message: error.message })
     }
@@ -49,7 +49,7 @@ export const updateOneC = async (req, res) => {
 export const deleteOneC = async (req,res)=>{
     try {
         await QuoteModel.destroy({
-            where: { numCotizaciones: req.params.numCotizacion }
+            where: { numCotizaciones: req.params.numCotizaciones }
         })
         res.json({
             "message": "Cotizacion eleminado"
