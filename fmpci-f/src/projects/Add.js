@@ -9,52 +9,71 @@ const URIC = 'http://localhost:8000/quotes/'
 
 
 const Add = () => {
-    const [numProyecto, setNumProyecto] = useState('')
-    const [nomProyecto, setNomProyecto] = useState('')
-    const [prioridad, setPrioridad] = useState('')
-    const [fecha, setFecha] = useState('')
-    const [cliente, setCliente] = useState('')
-    const [descripcion, setDescripcion] = useState('')
-    const [estatus, setEstatus] = useState('')
-    const [cantidad, setCantidad] = useState('')
-    const [fRequerida, setFrequerida] = useState('')
-    const [fFinalizacion, setFfinalizacion] = useState('')
-    const [fEntrega, setFentrega] = useState('')
+    const vaIni = {
+        numProyecto: '',
+        nomProyecto: '',
+        prioridad: '',
+        fecha: '',
+        cliente: '',
+        descripcion: '',
+        estatus: '',
+        cantidad: '',
+        fRequerida: '',
+        fFinalizacion: '',
+        fEntrega: '',
+    }
+    const vaIniC = {
+        numCotizaciones: '',
+        fEntCot: '',
+        fCotizada: '',
+        encargado: '',
+    }
+    const [proyecto, setProyecto] = useState(vaIni)
+    const [contizacion, setCotizacion]=useState(vaIniC)
 
+    const capturarDatos = (e) => {
 
-    const [numCotizaciones, setNumCotizaciones] = useState('')
-    const [fEntCot, setFentCot] = useState('')
-    const [fCotizada, setFcotizada] = useState('')
-    const [encargado, setEncargado] = useState('')
+        setProyecto({
+            ...proyecto,
+            [e.target.name]: e.target.value
+        })
+        
+    }
+    const capturarDatosC = (e) =>{
+        setCotizacion({
+            ...contizacion,
+            [e.target.name]:e.target.value
+        })
+    }
     const navigate = useNavigate()
 
     const guardar = async (e) => {
         e.preventDefault()
         await axios.post(URI, {
-            numProyecto: numProyecto,
-            nomProyecto: nomProyecto,
-            prioridad: prioridad,
-            fecha: fecha,
-            cliente: cliente,
-            descripcion: descripcion,
-            estatus: estatus,
-            cantidad: cantidad,
-            fRequerida: fRequerida,
-            fFinalizacion: fFinalizacion,
-            fEntrega: fEntrega,
-            
+            numProyecto: proyecto.numProyecto,
+            nomProyecto: proyecto.nomProyecto,
+            prioridad: proyecto.prioridad,
+            fecha: proyecto.fecha,
+            cliente: proyecto.cliente,
+            descripcion: proyecto.descripcion,
+            estatus: proyecto.estatus,
+            cantidad: proyecto.cantidad,
+            fRequerida: proyecto.fRequerida,
+            fFinalizacion: proyecto.fFinalizacion,
+            fEntrega: proyecto.fEntrega
+
         })
         await axios.post(URIC, {
-            
-            numCotizaciones: numCotizaciones,
-            fEntCot: fEntCot,
-            fCotizada: fCotizada,
-            encargado: encargado,
-            numProyecto: numProyecto,
+
+            numCotizaciones: contizacion.numCotizaciones,
+            fEntCot: contizacion.fEntCot,
+            fCotizada: contizacion.fCotizada,
+            encargado: contizacion.encargado,
+            numProyecto: proyecto.numProyecto,
         })
         navigate('/')
     }
-    
+
 
     return (
         <div className="container">
@@ -62,55 +81,97 @@ const Add = () => {
                 <div className="col">
                     <h1>Agregar Proyecto</h1>
                     <form onSubmit={guardar}>
-                        <h2>Datos del Proyecto</h2>
-                        <label className="form-label">Numero Identificador del Proyecto</label>
-                        <input value={numProyecto} onChange={(e) => setNumProyecto(e.target.value)} type='text' className="frml" />
+                    <h2>Datos del Proyecto</h2>
+                            <label className="form-label">Numero Identificador del Proyecto</label>
+                            <input name='numProyecto'
+                                value={proyecto.numProyecto}
+                                onChange={capturarDatos}
+                                type='text'
+                                className="frml" />
 
-                        <label className="form-label">Nombre del Proyecto</label>
-                        <input value={nomProyecto} onChange={(e) => setNomProyecto(e.target.value)} type='text' className="frml" />
+                            <label className="form-label">Nombre del Proyecto</label>
+                            <input name='nomProyecto'
+                                value={proyecto.nomProyecto}
+                                onChange={capturarDatos}
+                                type='text'
+                                className="frml" />
 
-                        <label className="form-label">Prioridad</label>
-                        <select value={prioridad} onChange={(e) => setPrioridad(e.target.value)} className="frml">
-                            <option>Seleccione Una Opcion</option>
-                            <option>Normal</option>
-                            <option>Alta</option>
-                            <option>Baba</option>
-                            <option>Urgente</option>
-                        </select>
+                            <label className="form-label">Prioridad</label>
+                            <select name='prioridad'
+                                value={proyecto.prioridad}
+                                onChange={capturarDatos}
+                                className="frml">
+                                <option>Seleccione Una Opcion</option>
+                                <option>Normal</option>
+                                <option>Alta</option>
+                                <option>Baba</option>
+                                <option>Urgente</option>
+                            </select>
 
 
-                        <label className="form-label">Fecha de registro</label>
-                        <input value={fecha} onChange={(e) => setFecha(e.target.value)} type='date' className="frml" />
+                            <label className="form-label">Fecha de registro</label>
+                            <input name='fecha'
+                                value={proyecto.fecha}
+                                onChange={capturarDatos}
+                                type='date' className="frml" />
 
-                        <label className="form-label">Cliente</label>
-                        <input value={cliente} onChange={(e) => setCliente(e.target.value)} type='text' className="frml" />
+                            <label className="form-label">Cliente</label>
+                            <input name='cliente'
+                                value={proyecto.cliente}
+                                onChange={capturarDatos}
+                                type='text'
+                                className="frml" />
 
-                        <label className="form-label">Descripcion</label>
-                        <textarea value={descripcion} onChange={(e) => setDescripcion(e.target.value)} type='text' className="frml" />
+                            <label className="form-label">Descripcion</label>
+                            <textarea name='descripcion'
+                                value={proyecto.descripcion}
+                                onChange={capturarDatos}
+                                type='text'
+                                className="frml" />
 
-                        <label className="form-label">Estado</label>
-                        <select value={estatus} onChange={(e) => setEstatus(e.target.value)} className="frml">
-                            <option>Seleccione Una Opcion</option>
-                            <option>Diseño</option>
-                            <option>Diseño-Revision</option>
-                            <option>En Fila</option>
-                            <option>En Proceso</option>
-                            <option>Para Entrega Parcial</option>
-                            <option>Terminado</option>
-                            <option>No Completado</option>
-                        </select>
+                            <label className="form-label">Estado</label>
+                            <select name='estatus'
+                                value={proyecto.estatus}
+                                onChange={capturarDatos}
+                                className="frml">
+                                <option>Seleccione Una Opcion</option>
+                                <option>Diseño</option>
+                                <option>Diseño-Revision</option>
+                                <option>En Fila</option>
+                                <option>En Proceso</option>
+                                <option>Para Entrega Parcial</option>
+                                <option>Terminado</option>
+                                <option>No Completado</option>
+                            </select>
 
-                        <label className="form-label">Cantidad</label>
-                        <textarea value={cantidad} onChange={(e) => setCantidad(e.target.value)} type='text' className="frml" />
+                            <label className="form-label">Cantidad</label>
+                            <textarea name='cantidad'
+                                value={proyecto.cantidad}
+                                onChange={capturarDatos}
+                                type='text'
+                                className="frml" />
 
-                        <label className="form-label">Fecha Requerida</label>
-                        <input value={fRequerida} onChange={(e) => setFrequerida(e.target.value)} type='date' className="frml" />
+                            <label className="form-label">Fecha Requerida</label>
+                            <input name='fRequerida'
+                                value={proyecto.fRequerida}
+                                onChange={capturarDatos}
+                                type='date'
+                                className="frml" />
 
-                        <label className="form-label">Fecha Finalizacion</label>
-                        <input value={fFinalizacion} onChange={(e) => setFfinalizacion(e.target.value)} type='date' className="frml" />
+                            <label className="form-label">Fecha Finalizacion</label>
+                            <input name='fFinalizacion'
+                                value={proyecto.fFinalizacion}
+                                onChange={capturarDatos}
+                                type='date'
+                                className="frml" />
 
-                        <label className="form-label">Fecha Requerida</label>
-                        <input value={fEntrega} onChange={(e) => setFentrega(e.target.value)} type='date' className="frml" />
+                            <label className="form-label">Fecha Requerida</label>
+                            <input name='fEntrega'
+                                value={proyecto.fEntrega}
+                                onChange={capturarDatos}
+                                type='date'
+                                className="frml" />
+
 
                         <br />
                         <br />
@@ -118,24 +179,38 @@ const Add = () => {
 
                         <h2>Datos de Cotizacion</h2>
                         <label className="form-label">Numero Identificador de la Cotizacion</label>
-                        <input value={numCotizaciones} onChange={(e) => setNumCotizaciones(e.target.value)} type='text' className="frml" />
+                        <input name="numCotizaciones"
+                        value={contizacion.numCotizaciones} 
+                        onChange={capturarDatosC} 
+                        type='text' 
+                        className="frml" />
 
                         <label className="form-label">Fecha de Entrega para Cotizar</label>
-                        <input value={fEntCot} onChange={(e) => setFentCot(e.target.value)} type='date' className="frml" />
+                        <input name="fEntCot"
+                        value={contizacion.fEntCot} 
+                        onChange={capturarDatosC} 
+                        type='date' 
+                        className="frml" />
 
                         <label className="form-label">Fecha de Cotizacion Finalizada</label>
-                        <input value={fCotizada} onChange={(e) => setFcotizada(e.target.value)} type='date' className="frml" />
+                        <input name="fCotizada"
+                        value={contizacion.fCotizada} 
+                        onChange={capturarDatosC} 
+                        type='date' 
+                        className="frml" />
 
                         <label className="form-label">Encargado</label>
-                        <select value={encargado} onChange={(e) => setEncargado(e.target.value)} className="frml">
+                        <select name="encargado"
+                        value={contizacion.encargado} 
+                        onChange={capturarDatosC} 
+                        className="frml">
                             <option>Seleccione Una Opcion</option>
                             <option>Alfonso Santa Anna</option>
                             <option>Mauro Saenz</option>
                             <option>Claudia Gaytan</option>
                         </select>
 
-                        <label className="form-label">Documentos</label>
-                        <input className="frml" type="file" />
+                        
                         <br />
                         <br />
                         <button type="submit" className="btn-o mt-2 mb-2">Agregar</button>
