@@ -49,15 +49,15 @@ const Edit = () => {
         navigate('/')
         console.log(proyecto);
     }
-    useEffect(() => {
-
-        getProById()
-    }, [])
     const getProById = async () => {
         const res = await axios.get(URI + id)
         setProyecto(res.data)
         console.log(proyecto);
     }
+    useEffect(() => {
+        getProById()
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
 
 
     return (
