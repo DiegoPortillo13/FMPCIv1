@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import * as BsIcon  from "react-icons/bs";
 import './Estilo.css' 
 
+
 const URI = 'http://localhost:8000/projects/'
 
 const CompGetAll = () => {
@@ -31,8 +32,8 @@ const CompGetAll = () => {
                         Proyectos
                     </h1>
                     <Link to="/add" className='btn-o mt-2 mb-2' ><BsIcon.BsFillPlusCircleFill /> <span className='spn'>Agregar Proyecto</span> </Link>
-                    <table className="table table-striped table-inverse table-responsive">
-                        <thead className="thead-inverse">
+                    <table className="table table-striped table-inverse table-responsive table-hover ">
+                        <thead className="thead-inverse table-dark">
                             <tr>
                                 <th>Id</th>
                                 <th>Nombre</th>
@@ -41,23 +42,25 @@ const CompGetAll = () => {
                                 <th>Descripcion</th>
                                 <th>Estado</th>
                                 <th>Cantidad</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             {projects.map((project) => (
-                                <tr key={project.numProyecto}>
+                                <tr key={project.numProyecto} className="align-middle">
                                     <td>{project.numProyecto}</td>
                                     <td>{project.nomProyecto}</td>
                                     <td>{project.prioridad }</td>
-                                    <td>{project.cliente }</td>
-                                    <td>{project.descripcion }</td>
-                                    <td>{project.estatus }</td>
-                                    <td>{project.cantidad }</td>
+                                    <td>{project.cliente}</td>
+                                    <td >{project.descripcion}</td>
+                                    <td>{project.estatus}</td>
+                                    <td>{project.cantidad}</td>
                                     <td>{
                                         <Link to={`/edit/${project.numProyecto}`} className='btn-o  mx-2'><BsIcon.BsFillPencilFill /></Link>
                                         
                                         }
                                         <button onClick={()=>delProject(project.numProyecto)} className='btn-o mx-2'><BsIcon.BsFillTrashFill /></button>
+                                        <button className='btn-o mx-2'><BsIcon.BsEyeFill /></button>
                                     </td>
                                 </tr>
                             ))

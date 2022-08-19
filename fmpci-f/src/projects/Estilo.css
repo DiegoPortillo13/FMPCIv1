@@ -76,3 +76,6 @@
 .spn {
     margin-left: 16px;
 }
+.align-middle{
+    vertical-align: baseline;
+}
