@@ -15,11 +15,12 @@ const CompGetAllC = () => {
     const getQuotes = async () => {
         const res = await axios.get(URI)
         setQuotes(res.data)
+       
     }
 
 
-    const delQuotes = async (numProyecto) => {
-        axios.delete(`${URI}${numProyecto}`)
+    const delQuotes = async (numCotizaciones) => {
+        axios.delete(`${URI}${numCotizaciones}`)
         getQuotes()
     }
 
@@ -45,7 +46,7 @@ const CompGetAllC = () => {
                             {quotes.map((quote) => (
                                 <tr key={quote.numCotizaciones}>
                                     <td>{quote.numProyecto}</td>
-                                    <td>{quote.numCotizacion}</td>
+                                    <td>{quote.numCotizaciones}</td>
                                     <td>{quote.fEntCot }</td>
                                     <td>{quote.fCotizada }</td>
                                     <td>{quote.encargado }</td>

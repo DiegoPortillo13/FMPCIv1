@@ -1,23 +1,24 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react'
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import * as BsIcon from "react-icons/bs";
 
 
 const URI = 'http://localhost:8000/projects/'
 
 const Edit = () => {
     const vaIni = {
-        numProyecto: '',
-        nomProyecto: '',
-        prioridad: '',
-        fecha: '',
-        cliente: '',
-        descripcion: '',
-        estatus: '',
-        cantidad: '',
-        fRequerida: '',
-        fFinalizacion: '',
-        fEntrega: '',
+        numProyecto: "",
+        nomProyecto: "",
+        prioridad: "",
+        fecha: "",
+        cliente: "",
+        descripcion: "",
+        estatus: "",
+        cantidad: "",
+        fRequerida: "",
+        fFinalizacion: "",
+        fEntrega: "",
     }
     const [proyecto, setProyecto] = useState(vaIni)
     const capturarDatos = (e) => {
@@ -30,7 +31,6 @@ const Edit = () => {
 
     const navigate = useNavigate()
     const { id } = useParams()
-
     const update = async (e) => {
         e.preventDefault()
         console.log(URI + id);
@@ -47,56 +47,49 @@ const Edit = () => {
             fFinalizacion: proyecto.fFinalizacion,
             fEntrega: proyecto.fEntrega
         })
-        
         navigate('/')
         console.log(proyecto);
-
-
-
     }
-
-
-
-    useEffect(() => {
-
-        getProById()
-
-    }, [])
-
     const getProById = async () => {
         const res = await axios.get(URI + id)
-        console.log(URI + id);
         setProyecto(res.data)
         console.log(proyecto);
-
     }
+    useEffect(() => {
+        getProById()
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
 
 
     return (
         <div>
             <div className="container">
+
                 <div className="row">
+                    <div className='col-1'>
+                        <Link to={`/projects/`} className="btn-o mt-2 mb-2" ><BsIcon.BsArrowBarLeft/></Link>
+                    </div>
                     <div className="col">
                         <h1>Actualizar Proyecto</h1>
                         <form onSubmit={update}>
                             <h2>Datos del Proyecto</h2>
                             <label className="form-label">Numero Identificador del Proyecto</label>
                             <input name='numProyecto'
-                                value={proyecto.numProyecto}
+                                value={proyecto.numProyecto ?? ""}
                                 onChange={capturarDatos}
                                 type='text'
                                 className="frml" />
 
                             <label className="form-label">Nombre del Proyecto</label>
                             <input name='nomProyecto'
-                                value={proyecto.nomProyecto}
+                                value={proyecto.nomProyecto ?? ""}
                                 onChange={capturarDatos}
                                 type='text'
                                 className="frml" />
 
                             <label className="form-label">Prioridad</label>
                             <select name='prioridad'
-                                value={proyecto.prioridad}
+                                value={proyecto.prioridad ?? ""}
                                 onChange={capturarDatos}
                                 className="frml">
                                 <option>Seleccione Una Opcion</option>
@@ -109,27 +102,27 @@ const Edit = () => {
 
                             <label className="form-label">Fecha de registro</label>
                             <input name='fecha'
-                                value={proyecto.fecha}
+                                value={proyecto.fecha ?? ""}
                                 onChange={capturarDatos}
                                 type='date' className="frml" />
 
                             <label className="form-label">Cliente</label>
                             <input name='cliente'
-                                value={proyecto.cliente}
+                                value={proyecto.cliente ?? ""}
                                 onChange={capturarDatos}
                                 type='text'
                                 className="frml" />
 
                             <label className="form-label">Descripcion</label>
                             <textarea name='descripcion'
-                                value={proyecto.descripcion}
+                                value={proyecto.descripcion ?? ""}
                                 onChange={capturarDatos}
                                 type='text'
                                 className="frml" />
 
                             <label className="form-label">Estado</label>
                             <select name='estatus'
-                                value={proyecto.estatus}
+                                value={proyecto.estatus ?? ""}
                                 onChange={capturarDatos}
                                 className="frml">
                                 <option>Seleccione Una Opcion</option>
@@ -144,37 +137,31 @@ const Edit = () => {
 
                             <label className="form-label">Cantidad</label>
                             <textarea name='cantidad'
-                                value={proyecto.cantidad}
+                                value={proyecto.cantidad ?? ""}
                                 onChange={capturarDatos}
                                 type='text'
                                 className="frml" />
 
                             <label className="form-label">Fecha Requerida</label>
                             <input name='fRequerida'
-                                value={proyecto.fRequerida}
+                                value={proyecto.fRequerida ?? ""}
                                 onChange={capturarDatos}
                                 type='date'
                                 className="frml" />
 
                             <label className="form-label">Fecha Finalizacion</label>
                             <input name='fFinalizacion'
-                                value={proyecto.fFinalizacion}
+                                value={proyecto.fFinalizacion ?? ""}
                                 onChange={capturarDatos}
                                 type='date'
                                 className="frml" />
 
                             <label className="form-label">Fecha Requerida</label>
                             <input name='fEntrega'
-                                value={proyecto.fEntrega}
+                                value={proyecto.fEntrega ?? ""}
                                 onChange={capturarDatos}
                                 type='date'
                                 className="frml" />
-
-                            <br />
-                            <br />
-                            <br />
-
-
                             <br />
                             <br />
                             <button type="submit" className="btn-o mt-2 mb-2" >Actualizar</button>

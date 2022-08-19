@@ -7,7 +7,7 @@ numProyecto:{type:DataTypes.STRING},
 numCotizaciones:{type:DataTypes.STRING},
 fEntCot:{type:DataTypes.DATE}, 
 fCotizada:{type:DataTypes.DATE}, 
-Encargado:{type:DataTypes.STRING},
+encargado:{type:DataTypes.STRING},
 
 })
 QuoteModel.removeAttribute('id');
