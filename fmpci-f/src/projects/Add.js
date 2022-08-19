@@ -204,20 +204,15 @@ const Add = () => {
                             className="frml" />
 
                         <label className="form-label">Encargado</label>
-                        <label className="form-label">Prioridad</label>
-                        <select name='prioridad'
+                        <select name='encargado'
                             value={contizacion.encargado}
                             onChange={capturarDatosC}
                             className="frml">
-                            
                             <option>Seleccione Una Opcion</option>
                             <option>Alfonso Santa Anna</option>
                             <option>Mauro Saenz</option>
                             <option>Claudia Gaytan</option>
-                        
                         </select>
-
-
                         <br />
                         <br />
                         <button type="submit" className="btn-o mt-2 mb-2">Agregar</button>

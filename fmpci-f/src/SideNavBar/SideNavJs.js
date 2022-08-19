@@ -16,6 +16,9 @@ function SideNavJs() {
                     <Link to='#' className='menu-bar'>
                         <FaIcons.FaBars onClick={showSideBar} />
                     </Link>
+                    <div className='imgnd'>
+                        <img src="Logo-Fabrimetal.jpg" alt="FM" className='imgn' />
+                    </div>
                 </div>
                 <nav className={sidebar ? 'sidenav-nav active' : 'sidenav-nav'}>
                     <ul className='sidenav-items' onClick={showSideBar}>
