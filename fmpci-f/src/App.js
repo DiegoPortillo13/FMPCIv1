@@ -6,6 +6,7 @@ import SideNavJs from './SideNavBar/SideNavJs';
 import CompGetAll from './projects/GetAll';
 import Add from './projects/Add';
 import Edit from './projects/Edit'
+import InfoW from './projects/InfoW'
 
 import CompGetAllC from './quotes/GetAllC';
 
@@ -26,6 +27,7 @@ function App() {
           <Route path='/add' element={<Add />} />
           <Route path='/cotizaciones' element={<CompGetAllC />}/>
           <Route path='/edit/:id' element={<Edit />} />
+          <Route path='/view' element={<InfoW />} />
         </Routes>
       </BrowserRouter>
 

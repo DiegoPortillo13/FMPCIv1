@@ -29,11 +29,21 @@ const Edit = () => {
         })
     }
 
+    const getProById = async () => {
+        const res = await axios.get(URI + id)
+        setProyecto(res.data)
+        console.log(proyecto + "Get");
+    }
+    useEffect(() => {
+        getProById()
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
+
     const navigate = useNavigate()
     const { id } = useParams()
     const update = async (e) => {
         e.preventDefault()
-        console.log(URI + id);
+        console.log(URI + id + "UPDATE");
         await axios.put(URI + id, {
             numProyecto: proyecto.numProyecto,
             nomProyecto: proyecto.nomProyecto,
@@ -50,15 +60,7 @@ const Edit = () => {
         navigate('/')
         console.log(proyecto);
     }
-    const getProById = async () => {
-        const res = await axios.get(URI + id)
-        setProyecto(res.data)
-        console.log(proyecto);
-    }
-    useEffect(() => {
-        getProById()
-    }, []) // eslint-disable-line react-hooks/exhaustive-deps
-
+    
 
 
     return (
