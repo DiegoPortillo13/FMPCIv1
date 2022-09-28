@@ -79,3 +79,9 @@
 .align-middle{
     vertical-align: baseline;
 }
+tr:active{
+    opacity: .5;
+}
+tr::selection{
+    opacity: .5;
+}

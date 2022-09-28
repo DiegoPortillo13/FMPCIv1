@@ -3,9 +3,9 @@ import { addOne, deleteOne, getAll, getOne, updateOne } from "../controllers/Pro
 const router = Express.Router()
 
 router.get('/', getAll)
-router.get('/:numProyecto', getOne)
+router.get('/:id', getOne)
 router.post('/', addOne)
-router.put('/:numProyecto', updateOne)
+router.put('/:id', updateOne)
 router.delete('/:numProyecto', deleteOne)
 
 export default router

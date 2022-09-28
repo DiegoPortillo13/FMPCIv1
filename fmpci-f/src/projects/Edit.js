@@ -7,7 +7,8 @@ import * as BsIcon from "react-icons/bs";
 const URI = 'http://localhost:8000/projects/'
 
 const Edit = () => {
-    const vaIni = {
+     
+    const [proyecto, setProyecto] = useState({
         numProyecto: "",
         nomProyecto: "",
         prioridad: "",
@@ -19,8 +20,7 @@ const Edit = () => {
         fRequerida: "",
         fFinalizacion: "",
         fEntrega: "",
-    }
-    const [proyecto, setProyecto] = useState(vaIni)
+    })
     const capturarDatos = (e) => {
 
         setProyecto({
@@ -28,22 +28,21 @@ const Edit = () => {
             [e.target.name]: e.target.value
         })
     }
+    const navigate = useNavigate()
+    const  {id}  = useParams()
 
     const getProById = async () => {
-        const res = await axios.get(URI + id)
+        const res = await axios.get(URI+id)
         setProyecto(res.data)
-        console.log(proyecto + "Get");
     }
     useEffect(() => {
-        getProById()
+        getProById(id)
+        console.log(proyecto);
     }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-
-    const navigate = useNavigate()
-    const { id } = useParams()
     const update = async (e) => {
         e.preventDefault()
-        console.log(URI + id + "UPDATE");
+        console.log(URI + id);
         await axios.put(URI + id, {
             numProyecto: proyecto.numProyecto,
             nomProyecto: proyecto.nomProyecto,
@@ -58,7 +57,6 @@ const Edit = () => {
             fEntrega: proyecto.fEntrega
         })
         navigate('/')
-        console.log(proyecto);
     }
     
 

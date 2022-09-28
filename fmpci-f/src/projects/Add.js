@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+
 import * as BsIcon from "react-icons/bs";
 
 
@@ -83,7 +84,7 @@ const Add = () => {
         <div className="container">
             <div className="row">
                 <div className='col-1'>
-                    <button className="btn-o mt-2 mb-2" ><BsIcon.BsArrowBarLeft /></button>
+                    <Link to={`/projects/`} className="btn-o mt-2 mb-2" ><BsIcon.BsArrowBarLeft /></Link>
                 </div>
                 <div className="col">
                     <h1>Agregar Proyecto</h1>
@@ -165,14 +166,14 @@ const Add = () => {
                             type='date'
                             className="frml" />
 
-                        <label className="form-label">Fecha Finalizacion</label>
+                        <label className="form-label">Fecha de Finalizacion</label>
                         <input name='fFinalizacion'
                             value={proyecto.fFinalizacion}
                             onChange={capturarDatos}
                             type='date'
                             className="frml" />
 
-                        <label className="form-label">Fecha Requerida</label>
+                        <label className="form-label">Fecha de Entrega</label>
                         <input name='fEntrega'
                             value={proyecto.fEntrega}
                             onChange={capturarDatos}

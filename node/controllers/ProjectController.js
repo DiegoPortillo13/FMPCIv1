@@ -12,9 +12,7 @@ export const getAll = async (req, res) => {
 export const getOne = async (req, res) => {
     try {
         const project = await ProjectModel.findAll({
-            where: {
-                numProyecto: req.params.numProyecto
-            }
+            where: {numProyecto: req.params.numProyecto}
         })
         res.json(project)
     } catch (error) {
