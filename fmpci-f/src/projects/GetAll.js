@@ -47,8 +47,8 @@ const CompGetAll = () => {
                         Proyectos
                     </h1>
                     <Link to="/add" className='btn-o mt-2 mb-2' ><BsIcon.BsFillPlusCircleFill /> <span className='spn'>Agregar Proyecto</span> </Link>
-                    <table className="table table-striped table-inverse table-responsive">
-                        <thead className="thead-inverse">
+                    <table className="table table-striped table-inverse table-responsive table-hover">
+                        <thead className="thead-inverse table-dark">
                             <tr>
                                 <th>Id</th>
                                 <th>Nombre</th>
@@ -57,6 +57,7 @@ const CompGetAll = () => {
                                 <th>Descripcion</th>
                                 <th>Estado</th>
                                 <th>Cantidad</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -74,7 +75,7 @@ const CompGetAll = () => {
 
                                     }
                                         <button onClick={() => delProject(project.numProyecto)} className='btn-o mx-2'><BsIcon.BsFillTrashFill /></button>
-                                        <button onClick={() => getProjectsId(project.numProyecto)} className='btn-o mx-2' data-bs-toggle="modal" data-bs-target="#myModal"><BsIcon.BsEyeFill /></button>
+                                        <button onClick={() => getProjectsId(project.numProyecto)} data-bs-toggle="modal" data-bs-target="#myModal" className='btn-o mx-2'><BsIcon.BsEyeFill /></button>
 
                                     </td>
                                 </tr>
