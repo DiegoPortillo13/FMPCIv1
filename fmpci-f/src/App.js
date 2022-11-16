@@ -26,6 +26,7 @@ function App() {
           <Route path='/add' element={<Add />} />
           <Route path='/cotizaciones' element={<CompGetAllC />}/>
           <Route path='/edit/:id' element={<Edit />} />
+          
         </Routes>
       </BrowserRouter>
 
