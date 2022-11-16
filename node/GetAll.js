@@ -21,7 +21,7 @@ const CompGetAll = () => {
         fFinalizacion: "",
         fEntrega: "",
     })
-    
+
 
     const getProjects = async () => {
         const res = await axios.get(URI)
@@ -47,8 +47,8 @@ const CompGetAll = () => {
                         Proyectos
                     </h1>
                     <Link to="/add" className='btn-o mt-2 mb-2' ><BsIcon.BsFillPlusCircleFill /> <span className='spn'>Agregar Proyecto</span> </Link>
-                    <table className="table table-striped table-inverse table-responsive">
-                        <thead className="thead-inverse">
+                    <table className="table table-inverse table-responsive table-hover" data-bs-sort-name="id" data-bs-sort-order="desc">
+                        <thead className="thead-inverse table-dark">
                             <tr>
                                 <th>Id</th>
                                 <th>Nombre</th>
@@ -57,12 +57,13 @@ const CompGetAll = () => {
                                 <th>Descripcion</th>
                                 <th>Estado</th>
                                 <th>Cantidad</th>
+                                <th></th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody className='table-group-divider'>
                             {projects.map((project) => (
-                                <tr key={project.numProyecto}>
-                                    <td>{project.numProyecto}</td>
+                                <tr key={project.numProyecto} onClick={() => getProjectsId(project.numProyecto)} data-bs-toggle="modal" data-bs-target="#myModal">
+                                    <td data-bs-field="id">{project.numProyecto}</td>
                                     <td>{project.nomProyecto}</td>
                                     <td>{project.prioridad}</td>
                                     <td>{project.cliente}</td>
@@ -74,7 +75,7 @@ const CompGetAll = () => {
 
                                     }
                                         <button onClick={() => delProject(project.numProyecto)} className='btn-o mx-2'><BsIcon.BsFillTrashFill /></button>
-                                        <button onClick={() => getProjectsId(project.numProyecto)} className='btn-o mx-2' data-bs-toggle="modal" data-bs-target="#myModal"><BsIcon.BsEyeFill /></button>
+                                        <button onClick={() => getProjectsId(project.numProyecto)} data-bs-toggle="modal" data-bs-target="#myModal" className='btn-o mx-2'><BsIcon.BsEyeFill /></button>
 
                                     </td>
                                 </tr>
@@ -89,7 +90,7 @@ const CompGetAll = () => {
 
 
             <div className="modal" id="myModal">
-                <div className="modal-dialog" style={{ width: "700px"}}>
+                <div className="modal-dialog" style={{ width: "700px" }}>
                     <div className="modal-content">
                         <div className="modal-header">
                             <h4 className="modal-ti tle">No. Proyecto: {modal.numProyecto}</h4>
@@ -113,7 +114,8 @@ const CompGetAll = () => {
 
 
                         <div className="modal-footer">
-                            <button type="button" className="btn-o mx-2" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="button" className="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                
                         </div>
 
                     </div>
